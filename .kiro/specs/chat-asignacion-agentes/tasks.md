@@ -117,11 +117,11 @@ Implementación incremental de una aplicación web de chat conversacional (React
     - **Propiedad 10: Resumen contiene todos los campos** — Para cualquier perfil completo, el resumen incluye nombre, teléfono, correo, domicilio, ingreso (si proporcionado) y ramo
     - **Valida: Requerimiento 9.1**
 
-- [-] 9. Checkpoint — Verificar API completa del backend
+- [x] 9. Checkpoint — Verificar API completa del backend
   - Ensure all tests pass, ask the user if questions arise.
 
 - [ ] 10. Implementar frontend React
-  - [~] 10.1 Crear componentes base del chat
+  - [x] 10.1 Crear componentes base del chat
     - Crear `client/src/App.tsx` como layout principal que inicializa sesión llamando a `POST /api/chat/start`
     - Crear `client/src/components/ChatWindow.tsx` como contenedor del área de mensajes y barra de entrada
     - Crear `client/src/components/MessageList.tsx` que renderiza la lista de mensajes con scroll automático al último mensaje
@@ -129,14 +129,14 @@ Implementación incremental de una aplicación web de chat conversacional (React
     - Crear `client/src/components/TypingIndicator.tsx` que muestra animación de "escribiendo..." antes de respuestas del sistema
     - _Requerimientos: 1.1, 1.2, 1.4_
 
-  - [~] 10.2 Crear componentes de interacción y presentación
+  - [x] 10.2 Crear componentes de interacción y presentación
     - Crear `client/src/components/InputBar.tsx` con campo de texto y botón enviar
     - Crear `client/src/components/OptionSelector.tsx` con botones/chips para selección de opciones (rangos de ingreso, ramos de seguro)
     - Crear `client/src/components/AgentCard.tsx` que muestra tarjeta con datos del agente asignado (nombre, teléfono, correo, especialidad)
     - Crear `client/src/components/ProfileSummary.tsx` que muestra resumen de datos del prospecto para confirmación
     - _Requerimientos: 1.1, 4.1, 5.1, 7.1, 9.1_
 
-  - [~] 10.3 Implementar lógica de comunicación con el backend
+  - [-] 10.3 Implementar lógica de comunicación con el backend
     - Crear `client/src/api.ts` con funciones: `startChat()`, `sendMessage(sessionId, text)`, `getSession(sessionId)` que llaman a los endpoints REST
     - Implementar retry automático (1 reintento) ante errores 503
     - Implementar almacenamiento de `sessionId` en `sessionStorage` para preservar estado ante recargas
