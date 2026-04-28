@@ -9,16 +9,7 @@ interface MessageBubbleProps {
 export default function MessageBubble({ message }: MessageBubbleProps) {
   const isUser = message.sender === 'user';
 
-  const bubbleStyle: React.CSSProperties = {
-    maxWidth: '75%',
-    padding: '10px 14px',
-    borderRadius: '12px',
-    marginBottom: '8px',
-    alignSelf: isUser ? 'flex-end' : 'flex-start',
-    backgroundColor: isUser ? '#0d9488' : '#f3f4f6',
-    color: isUser ? '#ffffff' : '#1f2937',
-    wordBreak: 'break-word',
-  };
+  const bubbleClass = `message-bubble ${isUser ? 'message-bubble--user' : 'message-bubble--system'}`;
 
   const agent = message.agent as {
     nombre_completo: string;
@@ -41,8 +32,8 @@ export default function MessageBubble({ message }: MessageBubbleProps) {
   } | undefined;
 
   return (
-    <div style={bubbleStyle}>
-      <p style={{ margin: 0, lineHeight: 1.5 }}>{message.text}</p>
+    <div className={bubbleClass}>
+      <p>{message.text}</p>
 
       {agent && (
         <AgentCard

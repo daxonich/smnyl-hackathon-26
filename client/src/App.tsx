@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Message } from './types';
 import ChatWindow from './components/ChatWindow';
+import { startChat, sendMessage, getSession, getSavedSessionId } from './api';
 
 function App() {
   const [sessionId, setSessionId] = useState<string | null>(null);
@@ -10,10 +11,33 @@ function App() {
   const [currentOptions, setCurrentOptions] = useState<string[]>([]);
 
   useEffect(() => {
-    const initSession = async () => {
+    const init = async () => {
+      // Check sessionStorage for an existing session
+      const savedId = getSavedSessionId();
+      if (savedId) {
+        try {
+          const session = await getSession(savedId);
+          if (session) {
+            setSessionId(session.sessionId);
+            setStep(session.step);
+            setMessages([
+              {
+                id: crypto.randomUUID(),
+                text: 'Sesión restaurada. Puedes continuar donde te quedaste.',
+                sender: 'system',
+                timestamp: new Date(),
+              },
+            ]);
+            return;
+          }
+        } catch {
+          // Session not recoverable — fall through to start fresh
+        }
+      }
+
+      // No saved session or it was expired/invalid — start fresh
       try {
-        const res = await fetch('/api/chat/start', { method: 'POST' });
-        const data = await res.json();
+        const data = await startChat();
         setSessionId(data.sessionId);
         setStep(data.step);
         setCurrentOptions(data.options ?? []);
@@ -38,7 +62,7 @@ function App() {
       }
     };
 
-    initSession();
+    init();
   }, []);
 
   const handleSendMessage = useCallback(
@@ -56,12 +80,7 @@ function App() {
       setIsTyping(true);
 
       try {
-        const res = await fetch('/api/chat/message', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ sessionId, text }),
-        });
-        const data = await res.json();
+        const data = await sendMessage(sessionId, text);
         setStep(data.step);
 
         const systemMsg: Message = {
@@ -93,29 +112,12 @@ function App() {
   );
 
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: '#f9fafb',
-        fontFamily: 'system-ui, -apple-system, sans-serif',
-      }}
-    >
-      <header
-        style={{
-          padding: '12px 16px',
-          textAlign: 'center',
-          borderBottom: '1px solid #e5e7eb',
-          backgroundColor: '#ffffff',
-        }}
-      >
-        <h1 style={{ margin: 0, fontSize: '18px', color: '#111827' }}>
-          Asignación Inteligente de Agentes
-        </h1>
+    <div className="app-layout">
+      <header className="app-header">
+        <h1>Asignación Inteligente de Agentes</h1>
       </header>
 
-      <main style={{ flex: 1, overflow: 'hidden', padding: '16px' }}>
+      <main className="app-main">
         <ChatWindow
           messages={messages}
           isTyping={isTyping}

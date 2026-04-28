@@ -26,26 +26,14 @@ export default function ProfileSummary({ profile }: ProfileSummaryProps) {
   ];
 
   return (
-    <div
-      style={{
-        border: '1px solid #e5e7eb',
-        borderRadius: '12px',
-        padding: '16px',
-        backgroundColor: '#ffffff',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
-        marginTop: '8px',
-        maxWidth: '100%',
-      }}
-    >
-      <h3 style={{ margin: '0 0 12px', fontSize: '16px', color: '#111827' }}>
-        📋 Resumen de tu Perfil
-      </h3>
+    <div className="card">
+      <h3 className="card__title">📋 Resumen de tu Perfil</h3>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '14px' }}>
+      <div className="card__fields">
         {fields.map(({ label, value }) => (
           <div key={label}>
-            <span style={{ color: '#6b7280' }}>{label}: </span>
-            <span style={{ color: '#111827', fontWeight: 500 }}>{value}</span>
+            <span className="card__label">{label}: </span>
+            <span className="card__value">{value}</span>
           </div>
         ))}
       </div>

@@ -16,15 +16,7 @@ export default function MessageList({ messages, isTyping }: MessageListProps) {
   }, [messages, isTyping]);
 
   return (
-    <div
-      style={{
-        flex: 1,
-        overflowY: 'auto',
-        padding: '16px',
-        display: 'flex',
-        flexDirection: 'column',
-      }}
-    >
+    <div className="message-list">
       {messages.map((msg) => (
         <MessageBubble key={msg.id} message={msg} />
       ))}

@@ -12,23 +12,11 @@ interface ChatWindowProps {
 
 export default function ChatWindow({ messages, isTyping, onSendMessage, currentOptions }: ChatWindowProps) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-        maxWidth: '600px',
-        margin: '0 auto',
-        border: '1px solid #e5e7eb',
-        borderRadius: '12px',
-        overflow: 'hidden',
-        backgroundColor: '#ffffff',
-      }}
-    >
+    <div className="chat-window">
       <MessageList messages={messages} isTyping={isTyping} />
 
       {currentOptions && currentOptions.length > 0 && !isTyping && (
-        <div style={{ padding: '8px 12px', borderTop: '1px solid #e5e7eb' }}>
+        <div className="chat-options-bar">
           <OptionSelector options={currentOptions} onSelect={onSendMessage} />
         </div>
       )}

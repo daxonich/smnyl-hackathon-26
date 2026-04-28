@@ -10,59 +10,34 @@ interface AgentCardProps {
 
 export default function AgentCard({ agent, justification }: AgentCardProps) {
   return (
-    <div
-      style={{
-        border: '1px solid #e5e7eb',
-        borderRadius: '12px',
-        padding: '16px',
-        backgroundColor: '#ffffff',
-        boxShadow: '0 1px 3px rgba(0,0,0,0.08)',
-        marginTop: '8px',
-        maxWidth: '100%',
-      }}
-    >
-      <h3 style={{ margin: '0 0 12px', fontSize: '16px', color: '#111827' }}>
-        🧑‍💼 Agente Asignado
-      </h3>
+    <div className="card">
+      <h3 className="card__title">🧑‍💼 Agente Asignado</h3>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '14px' }}>
+      <div className="card__fields">
         <div>
-          <span style={{ color: '#6b7280' }}>Nombre: </span>
-          <span style={{ color: '#111827', fontWeight: 500 }}>{agent.nombre_completo}</span>
+          <span className="card__label">Nombre: </span>
+          <span className="card__value">{agent.nombre_completo}</span>
         </div>
         <div>
-          <span style={{ color: '#6b7280' }}>Teléfono: </span>
-          <a href={`tel:${agent.telefono}`} style={{ color: '#0d9488', textDecoration: 'none' }}>
+          <span className="card__label">Teléfono: </span>
+          <a href={`tel:${agent.telefono}`} className="card__link">
             {agent.telefono}
           </a>
         </div>
         <div>
-          <span style={{ color: '#6b7280' }}>Correo: </span>
-          <a href={`mailto:${agent.correo}`} style={{ color: '#0d9488', textDecoration: 'none' }}>
+          <span className="card__label">Correo: </span>
+          <a href={`mailto:${agent.correo}`} className="card__link">
             {agent.correo}
           </a>
         </div>
         <div>
-          <span style={{ color: '#6b7280' }}>Especialidad: </span>
-          <span style={{ color: '#111827' }}>{agent.ramo_especialidad}</span>
+          <span className="card__label">Especialidad: </span>
+          <span className="card__value">{agent.ramo_especialidad}</span>
         </div>
       </div>
 
       {justification && (
-        <p
-          style={{
-            marginTop: '12px',
-            marginBottom: 0,
-            padding: '10px',
-            backgroundColor: '#f0fdfa',
-            borderRadius: '8px',
-            fontSize: '13px',
-            color: '#374151',
-            lineHeight: 1.5,
-          }}
-        >
-          {justification}
-        </p>
+        <p className="card__justification">{justification}</p>
       )}
     </div>
   );

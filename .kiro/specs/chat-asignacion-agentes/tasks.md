@@ -120,7 +120,7 @@ Implementación incremental de una aplicación web de chat conversacional (React
 - [x] 9. Checkpoint — Verificar API completa del backend
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 10. Implementar frontend React
+- [x] 10. Implementar frontend React
   - [x] 10.1 Crear componentes base del chat
     - Crear `client/src/App.tsx` como layout principal que inicializa sesión llamando a `POST /api/chat/start`
     - Crear `client/src/components/ChatWindow.tsx` como contenedor del área de mensajes y barra de entrada
@@ -136,33 +136,33 @@ Implementación incremental de una aplicación web de chat conversacional (React
     - Crear `client/src/components/ProfileSummary.tsx` que muestra resumen de datos del prospecto para confirmación
     - _Requerimientos: 1.1, 4.1, 5.1, 7.1, 9.1_
 
-  - [-] 10.3 Implementar lógica de comunicación con el backend
+  - [x] 10.3 Implementar lógica de comunicación con el backend
     - Crear `client/src/api.ts` con funciones: `startChat()`, `sendMessage(sessionId, text)`, `getSession(sessionId)` que llaman a los endpoints REST
     - Implementar retry automático (1 reintento) ante errores 503
     - Implementar almacenamiento de `sessionId` en `sessionStorage` para preservar estado ante recargas
     - Conectar el flujo completo: InputBar/OptionSelector → sendMessage → actualizar MessageList → mostrar TypingIndicator → mostrar respuesta
     - _Requerimientos: 1.4, 1.5, 10.2, 10.4_
 
-  - [~] 10.4 Aplicar estilos responsivos
+  - [x] 10.4 Aplicar estilos responsivos
     - Crear estilos CSS para la interfaz de chat responsiva (desktop y móvil)
     - Estilizar burbujas de mensaje con colores diferenciados
     - Estilizar AgentCard y ProfileSummary como tarjetas visuales
     - Asegurar que el layout funcione en pantallas pequeñas (media queries)
     - _Requerimiento: 1.5_
 
-- [ ] 11. Integración final y wiring
-  - [~] 11.1 Configurar proxy de Vite y scripts de arranque
+- [x] 11. Integración final y wiring
+  - [x] 11.1 Configurar proxy de Vite y scripts de arranque
     - Configurar `vite.config.ts` con proxy de `/api` hacia el servidor Express
     - Crear script `dev` en raíz que arranque ambos servicios
     - Verificar flujo completo: frontend → backend → BD → respuesta
     - _Requerimientos: 1.1, 1.5_
 
-  - [~] 11.2 Ejecutar seed script y verificar datos
+  - [x] 11.2 Ejecutar seed script y verificar datos
     - Ejecutar el seed script para poblar la BD con 50+ agentes
     - Verificar que los datos generados cumplen las restricciones de la tabla
     - _Requerimientos: 8.1, 8.2, 8.3_
 
-- [~] 12. Checkpoint final — Verificar que todos los tests pasan y la aplicación funciona
+- [x] 12. Checkpoint final — Verificar que todos los tests pasan y la aplicación funciona
   - Ensure all tests pass, ask the user if questions arise.
 
 ## Notas
