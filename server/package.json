@@ -1,0 +1,31 @@
+{
+  "name": "chat-asignacion-agentes-server",
+  "version": "1.0.0",
+  "description": "Backend for chat-based intelligent insurance agent assignment",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "npx ts-node src/index.ts",
+    "seed": "npx ts-node src/seed.ts",
+    "test": "vitest --run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "@types/supertest": "^7.2.0",
+    "@types/uuid": "^10.0.0",
+    "fast-check": "^3.22.0",
+    "supertest": "^7.2.2",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}
