@@ -1,0 +1,8 @@
+﻿Nivel_socioeconómico,Lectura,Ingreso_mensual
+A/B,Alto,"$78,700 o más"
+C+,Medio alto,"$41,200 a $78,700"
+C,Medio,"$31,800 a $41,200"
+C−,Medio bajo,"$21,500 a $31,800"
+D+,Bajo alto,"$15,100 a $21,500"
+D,Bajo,"$5,600 a $15,100"
+E,Muy bajo,"$0 a $5,600"
