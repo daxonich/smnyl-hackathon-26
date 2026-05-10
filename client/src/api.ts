@@ -26,6 +26,9 @@ export interface SessionResponse {
 
 const SESSION_KEY = 'chatSessionId';
 
+/** Base path for API calls — must match the `base` in vite.config.ts (without trailing slash) */
+const API_BASE = '/app';
+
 /**
  * Wrapper around fetch that retries once on 503 after a 1-second delay.
  */
@@ -42,7 +45,7 @@ async function fetchWithRetry(url: string, init?: RequestInit): Promise<Response
  * Starts a new chat session. Stores the sessionId in sessionStorage.
  */
 export async function startChat(): Promise<ChatStartResponse> {
-  const res = await fetchWithRetry('/api/chat/start', { method: 'POST' });
+  const res = await fetchWithRetry(`${API_BASE}/api/chat/start`, { method: 'POST' });
   if (!res.ok) {
     throw new Error(`startChat failed: ${res.status}`);
   }
@@ -55,7 +58,7 @@ export async function startChat(): Promise<ChatStartResponse> {
  * Sends a prospect message within an existing session.
  */
 export async function sendMessage(sessionId: string, text: string): Promise<ChatMessageResponse> {
-  const res = await fetchWithRetry('/api/chat/message', {
+  const res = await fetchWithRetry(`${API_BASE}/api/chat/message`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ sessionId, text }),
@@ -72,7 +75,7 @@ export async function sendMessage(sessionId: string, text: string): Promise<Chat
  * and clears sessionStorage in those cases.
  */
 export async function getSession(sessionId: string): Promise<SessionResponse | null> {
-  const res = await fetchWithRetry(`/api/chat/session/${sessionId}`);
+  const res = await fetchWithRetry(`${API_BASE}/api/chat/session/${sessionId}`);
   if (res.status === 404 || res.status === 410) {
     sessionStorage.removeItem(SESSION_KEY);
     return null;

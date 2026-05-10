@@ -1,6 +1,20 @@
 <?php
-
 declare(strict_types=1);
+
+error_log("XKS - REQUEST_URI: " . ($_SERVER['REQUEST_URI'] ?? 'NOT SET'));
+error_log("XKS - REQUEST_METHOD: " . ($_SERVER['REQUEST_METHOD'] ?? 'NOT SET'));
+
+
+
+// Load .env if it exists
+$envFile = __DIR__ . '/../.env';
+if (file_exists($envFile)) {
+    foreach (file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+        if (str_starts_with($line, '#')) continue;
+        putenv($line);
+    }
+}
+
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -22,9 +36,9 @@ try {
     $db = Database::getInstance();
 
     // ─────────────────────────────────────────────────────────────────────────
-    // POST /api/chat/start
+    // POST /app/api/chat/start
     // ─────────────────────────────────────────────────────────────────────────
-    $router->addRoute('POST', '/api/chat/start', function (array $params) use ($sessionManager, $flowEngine): void {
+    $router->addRoute('POST', '/app/api/chat/start', function (array $params) use ($sessionManager, $flowEngine): void {
         $session = $sessionManager->create();
 
         jsonResponse([
@@ -35,9 +49,9 @@ try {
     });
 
     // ─────────────────────────────────────────────────────────────────────────
-    // POST /api/chat/message
+    // POST /app/api/chat/message
     // ─────────────────────────────────────────────────────────────────────────
-    $router->addRoute('POST', '/api/chat/message', function (array $params) use ($sessionManager, $flowEngine, $assignmentEngine, $db): void {
+    $router->addRoute('POST', '/app/api/chat/message', function (array $params) use ($sessionManager, $flowEngine, $assignmentEngine, $db): void {
         $body = parseRequestBody();
         $sessionId = $body['sessionId'] ?? null;
         $text = $body['text'] ?? null;
@@ -131,15 +145,15 @@ try {
 
             jsonResponse($response);
         } catch (\PDOException $e) {
-            error_log("Database error in /api/chat/message: " . $e->getMessage());
+            error_log("Database error in /app/api/chat/message: " . $e->getMessage());
             jsonResponse(['error' => 'Nuestro sistema está temporalmente fuera de servicio.'], 503);
         }
     });
 
     // ─────────────────────────────────────────────────────────────────────────
-    // GET /api/chat/session/{id}
+    // GET /app/api/chat/session/{id}
     // ─────────────────────────────────────────────────────────────────────────
-    $router->addRoute('GET', '/api/chat/session/{id}', function (array $params) use ($sessionManager): void {
+    $router->addRoute('GET', '/app/api/chat/session/{id}', function (array $params) use ($sessionManager): void {
         $id = $params['id'];
 
         if ($sessionManager->isExpired($id)) {

@@ -114,7 +114,7 @@ final class SessionManager
         );
         $updateStmt->execute([
             ':step' => $newStep,
-            ':profile' => json_encode($merged),
+            ':profile' => json_encode($merged, JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR),
             ':id' => $id,
         ]);
 
