@@ -18,13 +18,17 @@ The architecture shifts from an Express.js in-memory session model to a stateles
 
 ```mermaid
 graph TD
-    Browser[React Frontend] -->|HTTP| Nginx
+    Browser[React Frontend<br>/app/] -->|HTTP| Nginx
     Nginx -->|Static files| Dist[client/dist/]
-    Nginx -->|/api/* proxy| PHPFPM[PHP-FPM 8.4]
+    Nginx -->|/app/api/* proxy| PHPFPM[PHP-FPM 8.4]
     PHPFPM -->|PDO| MariaDB[(MariaDB 10.11)]
 
+```
+
+```mermaid
+graph TD
     subgraph php-server
-        Index[public/index.php] --> Router
+        Index[ app/api/ ] --> Router
         Router --> Routes[routes.php]
         Routes --> FlowEngine[FlowEngine.php]
         Routes --> AssignmentEngine[AssignmentEngine.php]
@@ -41,7 +45,7 @@ graph TD
 
 1. Nginx receives request
 2. If path matches a static file in `client/dist/` → serve directly
-3. If path starts with `/api/` → proxy to PHP-FPM via FastCGI
+3. If path starts with `/app/api/` → proxy to PHP-FPM via FastCGI
 4. `public/index.php` bootstraps: loads config, creates PDO connection, instantiates router
 5. Router matches URI pattern and HTTP method → dispatches to handler
 6. Handler uses SessionManager, FlowEngine, or AssignmentEngine as needed
@@ -96,7 +100,7 @@ final class Router
 }
 ```
 
-- Pattern matching supports named parameters: `/api/chat/session/{id}`
+- Pattern matching supports named parameters: `/app/api/chat/session/{id}`
 - Unmatched routes return 404 JSON error
 - Handles OPTIONS preflight with 204 + CORS headers
 
