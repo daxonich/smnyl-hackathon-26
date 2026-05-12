@@ -8,8 +8,9 @@ Agentic Builders League de AWS del 28 de Abril de 2026.
 # Documentos en este repo
 
 - [Readme sobre Builders League](./00-doc/readme.md)
-- Resultado del análisis Working Backwards: [WB-AsignacionAgente.pdf](./00-WB/WB-AsignacionAgente.pdf)
-- Mock WorkingBackwards
+- Resultado del análisis Working Backwards:
+  - [WB-AsignacionAgente.pdf](./00-WB/WB-AsignacionAgente.pdf)
+  - [Mock WorkingBackwards](./00-WB/WB-AsignacionAgente-PartyRock-mockup/readme.md)
 
 # Apps demo
 
