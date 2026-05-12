@@ -5,6 +5,12 @@ El hackathon de AWS Builders league Agentica
 Este repositorio contiene el código generado durante el Hackathon de la 
 Agentic Builders League de AWS del 28 de Abril de 2026.
 
+# Documentos en este repo
+
+- [Readme sobre Builders League](./00-doc/readme.md)
+- Resultado del análisis Working Backwards: [WB-AsignacionAgente.pdf](./00-WB/WB-AsignacionAgente.pdf)
+- Mock WorkingBackwards
+
 # Apps demo
 
 ## Versión 1.0.0
@@ -50,7 +56,7 @@ Sin aspectos técnicos más allá de los vitales.
 
 > - Herramienta PartyRock con el Working Backwards [ITP-LATAM-WB-Workshop - límpio](https://partyrock.aws/u/dxduarte/ILIvEOSua/ITP-LATAM-WB-Workshop)
 >
-> - Resultado del análissi Workng Backwards: [WB-AsignacionAgente.pdf](./00-WB/WB-AsignacionAgente.pdf)
+> - Resultado del análisis Working Backwards: [WB-AsignacionAgente.pdf](./00-WB/WB-AsignacionAgente.pdf)
 >
 > - [Snapshot WB (requiere sesión Gmail Ds)](https://partyrock.aws/u/dxduarte/ILIvEOSua/ITP-LATAM-WB-Workshop/snapshot/s3asxdPKz) 
 
